@@ -22,11 +22,11 @@ public class FtrcTest {
 
     @NotBlank
     @NotEmpty
-    private String testName;
+    private String name;
 
     @NotBlank
     @NotEmpty
-    private String testImage;
+    private String image;
 
     @NotBlank
     @NotEmpty
@@ -35,10 +35,10 @@ public class FtrcTest {
     @NotBlank
     @NotEmpty
     @ManyToOne(fetch = FetchType.LAZY)
-    private FtrcCategory Category;
+    private FtrcCategory category;
 
     @NotBlank
     @NotEmpty
     @OneToMany(fetch = FetchType.LAZY)
-    private List<FtrcQuestion> testQuestion;
+    private List<FtrcQuestion> questions;
 }

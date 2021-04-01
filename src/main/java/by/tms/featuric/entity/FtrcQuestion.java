@@ -22,7 +22,7 @@ public class FtrcQuestion {
 
     @NotBlank
     @NotEmpty
-    private String questionName;
+    private String name;
 
     @NotBlank
     @NotEmpty

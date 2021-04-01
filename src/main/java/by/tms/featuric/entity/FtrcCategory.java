@@ -24,9 +24,9 @@ public class FtrcCategory {
 
     @NotBlank
     @NotEmpty
-    private String categoryName;
+    private String name;
 
     @NotBlank
     @NotEmpty
-    private String categoryDescription;
+    private String description;
 }

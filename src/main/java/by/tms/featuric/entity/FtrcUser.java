@@ -32,13 +32,10 @@ public class FtrcUser {
     @NotEmpty
     private String lastName;
 
-    @NotBlank
-    @NotEmpty
-    private String userName;
 
     @NotBlank
     @NotEmpty
-    private String userImage;
+    private String image;
 
     @NotBlank
     @NotEmpty
