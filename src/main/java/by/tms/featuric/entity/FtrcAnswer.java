@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigInteger;
@@ -24,9 +21,16 @@ public class FtrcAnswer {
 
     @NotBlank
     @NotEmpty
+    private String description;
+
+    @NotBlank
+    @NotEmpty
     private String allAnswers;
 
     @NotBlank
     @NotEmpty
     private boolean rightAnswer;
+
+    @ManyToOne
+    private FtrcQuestion question;
 }

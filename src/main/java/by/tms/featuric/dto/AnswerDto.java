@@ -1,5 +1,6 @@
 package by.tms.featuric.dto;
 
+import by.tms.featuric.entity.FtrcQuestion;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -10,6 +11,8 @@ import java.math.BigInteger;
 public class AnswerDto {
 
     BigInteger id;
+    String description;
     String allAnswers;
     boolean rightAnswer;
+    FtrcQuestion question;
 }

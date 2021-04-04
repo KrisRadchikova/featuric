@@ -26,6 +26,14 @@ public class FtrcQuestion {
 
     @NotBlank
     @NotEmpty
+    private String image;
+
+    @NotBlank
+    @NotEmpty
+    private String description;
+
+    @NotBlank
+    @NotEmpty
     @OneToMany(fetch = FetchType.LAZY)
     private List<FtrcAnswer> answer;
 }

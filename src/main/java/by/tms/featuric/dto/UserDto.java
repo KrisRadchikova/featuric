@@ -1,5 +1,6 @@
 package by.tms.featuric.dto;
 
+import by.tms.featuric.entity.FtrcUserStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -15,7 +16,7 @@ public class UserDto {
     String image;
     String login;
     String password;
-
     String email;
+    FtrcUserStatus userStatus;
 
 }

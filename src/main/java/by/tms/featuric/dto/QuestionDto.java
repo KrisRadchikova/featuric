@@ -12,6 +12,8 @@ public class QuestionDto {
 
     BigInteger id;
     String name;
+    String image;
+    String description;
     List<AnswerDto> answerList;
 
 }

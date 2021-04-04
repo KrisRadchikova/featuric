@@ -14,6 +14,6 @@ public class TestDto {
     String name;
     String image;
     String description;
-    BigInteger category;
+    String category;
     List<QuestionDto> questions;
 }
