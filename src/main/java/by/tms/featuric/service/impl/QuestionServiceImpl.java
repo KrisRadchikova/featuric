@@ -25,8 +25,15 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public FtrcQuestion update(BigInteger id, FtrcQuestion ftrcQuestion) {
-        return null;
+    public FtrcQuestion update(BigInteger id, FtrcQuestion ftrcQuestionRequest) {
+        ftrcQuestionRepository.findById(id).map(ftrcQuestion -> {
+            ftrcQuestion.setName(ftrcQuestionRequest.getName());
+            ftrcQuestion.setImage(ftrcQuestionRequest.getImage());
+            ftrcQuestion.setDescription(ftrcQuestionRequest.getDescription());
+            ftrcQuestion.setAnswer(ftrcQuestionRequest.getAnswer());
+            return ftrcQuestionRepository.save(ftrcQuestion);
+        });
+        return ftrcQuestionRequest;
     }
 
     @Override

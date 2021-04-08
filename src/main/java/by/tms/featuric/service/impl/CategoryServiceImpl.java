@@ -25,8 +25,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public FtrcCategory update(BigInteger id, FtrcCategory ftrcCategory) {
-        return null;
+    public FtrcCategory update(BigInteger id, FtrcCategory ftrcCategoryRequest) {
+        ftrcCategoryRepository.findById(id).map(ftrcCategory -> {
+            ftrcCategory.setName(ftrcCategoryRequest.getName());
+            ftrcCategory.setDescription(ftrcCategoryRequest.getDescription());
+            return ftrcCategoryRepository.save(ftrcCategory);
+        });
+        return ftrcCategoryRequest;
     }
 
     @Override

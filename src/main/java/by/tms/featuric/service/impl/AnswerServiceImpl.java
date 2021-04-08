@@ -25,8 +25,15 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public FtrcAnswer update(BigInteger id, FtrcAnswer ftrcAnswer) {
-        return null;
+    public FtrcAnswer update(BigInteger id, FtrcAnswer ftrcAnswerRequest) {
+        ftrcAnswerRepository.findById(id).map(ftrcAnswer -> {
+            ftrcAnswer.setDescription(ftrcAnswerRequest.getDescription());
+            ftrcAnswer.setAllAnswers(ftrcAnswerRequest.getAllAnswers());
+            ftrcAnswer.setRightAnswer(ftrcAnswerRequest.isRightAnswer());
+            ftrcAnswer.setQuestion(ftrcAnswerRequest.getQuestion());
+            return ftrcAnswerRepository.save(ftrcAnswer);
+        });
+        return ftrcAnswerRequest;
     }
 
     @Override

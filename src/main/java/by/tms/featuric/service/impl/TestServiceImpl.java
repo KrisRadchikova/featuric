@@ -26,8 +26,16 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public FtrcTest update(BigInteger id, FtrcTest ftrcTest) {
-        return null;
+    public FtrcTest update(BigInteger id, FtrcTest ftrcTestRequest) {
+        ftrcTestRepository.findById(id).map(ftrcTest -> {
+            ftrcTest.setName(ftrcTestRequest.getName());
+            ftrcTest.setImage(ftrcTestRequest.getImage());
+            ftrcTest.setDescription(ftrcTestRequest.getDescription());
+            ftrcTest.setCategory(ftrcTestRequest.getCategory());
+            ftrcTest.setQuestions(ftrcTestRequest.getQuestions());
+            return ftrcTestRepository.save(ftrcTest);
+        });
+        return ftrcTestRequest;
     }
 
     @Override

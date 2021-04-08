@@ -25,8 +25,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public FtrcUser update(BigInteger id, FtrcUser ftrcUser) {
-        return null;
+    public FtrcUser update(BigInteger id, FtrcUser ftrcUserRequest) {
+        ftrcUserRepository.findById(id).map(ftrcUser -> {
+            ftrcUser.setFirstName(ftrcUserRequest.getFirstName());
+            ftrcUser.setLastName(ftrcUserRequest.getLastName());
+            ftrcUser.setImage(ftrcUserRequest.getImage());
+            ftrcUser.setLogin(ftrcUserRequest.getLogin());
+            ftrcUser.setPassword(ftrcUserRequest.getPassword());
+            ftrcUser.setUserStatus(ftrcUserRequest.getUserStatus());
+            ftrcUser.setEmail(ftrcUserRequest.getEmail());
+            ftrcUser.setRating(ftrcUserRequest.getRating());
+            return ftrcUserRepository.save(ftrcUser);
+        });
+        return ftrcUserRequest;
     }
 
     @Override
