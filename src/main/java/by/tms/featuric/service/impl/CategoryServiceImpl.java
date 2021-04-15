@@ -51,6 +51,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public FtrcCategory findCategoryByName(String name) {
-        return ftrcCategoryRepository.findFtrcCategoryByCategoryName(name);
+        return ftrcCategoryRepository.findFtrcCategoryByName(name);
     }
 }

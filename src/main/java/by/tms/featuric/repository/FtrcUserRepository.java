@@ -8,7 +8,7 @@ import java.math.BigInteger;
 
 @Repository
 public interface FtrcUserRepository extends JpaRepository<FtrcUser, BigInteger> {
-    FtrcUser findFtrcUserByUserName(String name);
+    FtrcUser findFtrcUserByFirstNameAndLastName(String firstName, String lastName);
 
     FtrcUser findFtrcUserByLogin(String login);
 }

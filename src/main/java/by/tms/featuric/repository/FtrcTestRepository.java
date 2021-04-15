@@ -11,5 +11,5 @@ import java.math.BigInteger;
 public interface FtrcTestRepository extends JpaRepository<FtrcTest, BigInteger> {
     FtrcTest findFtrcTestByCategory(FtrcCategory ftrcCategory);
 
-    FtrcTest findFtrcTestByTestName(String name);
+    FtrcTest findFtrcTestByName(String name);
 }

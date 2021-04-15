@@ -17,7 +17,7 @@ public interface UserService {
 
     FtrcUser findUserById(BigInteger id);
 
-    FtrcUser findUserByName(String name);
+    FtrcUser findUserByFirstNameAndLastName(String firstName, String lastName);
 
     FtrcUser findUserByLogin(String login);
 }

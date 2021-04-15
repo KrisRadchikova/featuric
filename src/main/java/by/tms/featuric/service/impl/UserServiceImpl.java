@@ -56,8 +56,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public FtrcUser findUserByName(String name) {
-        return ftrcUserRepository.findFtrcUserByUserName(name);
+    public FtrcUser findUserByFirstNameAndLastName(String firstName, String lastName) {
+        return ftrcUserRepository.findFtrcUserByFirstNameAndLastName(firstName, lastName);
     }
 
     @Override

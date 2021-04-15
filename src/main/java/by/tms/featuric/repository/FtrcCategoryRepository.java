@@ -8,5 +8,5 @@ import java.math.BigInteger;
 
 @Repository
 public interface FtrcCategoryRepository extends JpaRepository<FtrcCategory, BigInteger> {
-    FtrcCategory findFtrcCategoryByCategoryName(String name);
+    FtrcCategory findFtrcCategoryByName(String name);
 }

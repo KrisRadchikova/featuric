@@ -60,6 +60,6 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public FtrcTest findTestByName(String name) {
-        return ftrcTestRepository.findFtrcTestByTestName(name);
+        return ftrcTestRepository.findFtrcTestByName(name);
     }
 }

@@ -16,7 +16,8 @@ import java.math.BigInteger;
 public class FtrcAnswer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "numeric(19,0)")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger id;
 
     @NotBlank
@@ -27,10 +28,10 @@ public class FtrcAnswer {
     @NotEmpty
     private String allAnswers;
 
-    @NotBlank
-    @NotEmpty
+
     private boolean rightAnswer;
 
-    @ManyToOne
+//    @ManyToOne
+    @Transient
     private FtrcQuestion question;
 }

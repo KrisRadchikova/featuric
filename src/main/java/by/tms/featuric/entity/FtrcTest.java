@@ -17,7 +17,8 @@ import java.util.List;
 public class FtrcTest {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "numeric(19,0)")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger id;
 
     @NotBlank
