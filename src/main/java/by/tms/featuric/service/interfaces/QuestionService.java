@@ -16,4 +16,6 @@ public interface QuestionService {
     List<FtrcQuestion> getAllQuestions();
 
     FtrcQuestion findQuestionById(BigInteger id);
+
+    FtrcQuestion getQuestionByTestId(BigInteger id);
 }
