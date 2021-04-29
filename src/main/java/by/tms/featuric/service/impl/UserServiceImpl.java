@@ -4,19 +4,25 @@ import by.tms.featuric.entity.FtrcUser;
 import by.tms.featuric.repository.FtrcUserRepository;
 import by.tms.featuric.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private final FtrcUserRepository ftrcUserRepository;
+    private FtrcUserRepository ftrcUserRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(FtrcUserRepository ftrcUserRepository) {
+    public UserServiceImpl(FtrcUserRepository ftrcUserRepository, PasswordEncoder passwordEncoder) {
         this.ftrcUserRepository = ftrcUserRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -24,6 +30,11 @@ public class UserServiceImpl implements UserService {
         return ftrcUserRepository.save(ftrcUser);
     }
 
+    // public boolean addUser(FtrcUser user) {
+    //        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    //        ftrcUserRepository.save(user);
+    //        return true;
+    //    }
     @Override
     public FtrcUser update(BigInteger id, FtrcUser ftrcUserRequest) {
         ftrcUserRepository.findById(id).map(ftrcUser -> {
@@ -63,5 +74,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public FtrcUser findUserByLogin(String login) {
         return ftrcUserRepository.findFtrcUserByLogin(login);
+    }
+
+    //UserDetailsService
+    @Override
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        FtrcUser user = ftrcUserRepository.findFtrcUserByLogin(login);
+        if(user == null){
+            throw new UsernameNotFoundException("User not found");
+        }
+        return (UserDetails) user;
     }
 }

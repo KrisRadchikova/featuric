@@ -28,7 +28,6 @@ public class AnswerServiceImpl implements AnswerService {
     public FtrcAnswer update(BigInteger id, FtrcAnswer ftrcAnswerRequest) {
         ftrcAnswerRepository.findById(id).map(ftrcAnswer -> {
             ftrcAnswer.setDescription(ftrcAnswerRequest.getDescription());
-            ftrcAnswer.setAllAnswers(ftrcAnswerRequest.getAllAnswers());
             ftrcAnswer.setRightAnswer(ftrcAnswerRequest.isRightAnswer());
             ftrcAnswer.setQuestion(ftrcAnswerRequest.getQuestion());
             return ftrcAnswerRepository.save(ftrcAnswer);
