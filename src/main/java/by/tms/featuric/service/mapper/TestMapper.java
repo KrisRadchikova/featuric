@@ -3,10 +3,8 @@ package by.tms.featuric.service.mapper;
 import by.tms.featuric.dto.TestDto;
 import by.tms.featuric.entity.FtrcCategory;
 import by.tms.featuric.entity.FtrcTest;
-import by.tms.featuric.entity.FtrcUser;
 import by.tms.featuric.service.interfaces.CategoryService;
 import by.tms.featuric.service.interfaces.Mapper;
-import by.tms.featuric.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,13 +14,11 @@ import java.util.stream.Collectors;
 public class TestMapper implements Mapper<FtrcTest, TestDto> {
 
     private final QuestionMapper questionMapper;
-    private final UserService userService;
     private final CategoryService categoryService;
 
     @Autowired
-    public TestMapper(QuestionMapper questionMapper, UserService userService, CategoryService categoryService) {
+    public TestMapper(QuestionMapper questionMapper, CategoryService categoryService) {
         this.questionMapper = questionMapper;
-        this.userService = userService;
         this.categoryService = categoryService;
     }
 
@@ -47,7 +43,6 @@ public class TestMapper implements Mapper<FtrcTest, TestDto> {
         if (dto.getCategory() != null) {
             category = categoryService.findCategoryById(dto.getId());
         }
-        FtrcUser user = userService.findUserById(dto.getId());
         FtrcTest test = new FtrcTest();
         test.setId(dto.getId());
         test.setName(dto.getName());

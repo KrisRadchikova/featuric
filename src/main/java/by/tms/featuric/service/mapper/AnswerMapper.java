@@ -23,7 +23,6 @@ public class AnswerMapper implements Mapper<FtrcAnswer, AnswerDto> {
         AnswerDto answerDto = new AnswerDto();
         answerDto.setId(entity.getId());
         answerDto.setDescription(entity.getDescription());
-        answerDto.setAllAnswers(entity.getAllAnswers());
         answerDto.setRightAnswer(entity.isRightAnswer());
         answerDto.setQuestion(entity.getQuestion());
         return answerDto;
@@ -38,7 +37,6 @@ public class AnswerMapper implements Mapper<FtrcAnswer, AnswerDto> {
         FtrcAnswer answer = new FtrcAnswer();
         answer.setId(dto.getId());
         answer.setDescription(dto.getDescription());
-        answer.setAllAnswers(dto.getAllAnswers());
         answer.setRightAnswer(dto.isRightAnswer());
         answer.setQuestion(question);
         return answer;

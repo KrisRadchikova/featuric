@@ -2,7 +2,6 @@ package by.tms.featuric.service.mapper;
 
 import by.tms.featuric.dto.QuestionDto;
 import by.tms.featuric.entity.FtrcAnswer;
-import by.tms.featuric.entity.FtrcCategory;
 import by.tms.featuric.entity.FtrcQuestion;
 import by.tms.featuric.service.interfaces.CategoryService;
 import by.tms.featuric.service.interfaces.Mapper;
@@ -29,7 +28,7 @@ public class QuestionMapper implements Mapper<FtrcQuestion, QuestionDto> {
         QuestionDto questionDto = new QuestionDto();
         questionDto.setId(entity.getId());
         questionDto.setName(entity.getName());
-        questionDto.setAnswerList(entity.getAnswer()
+        questionDto.setAnswers(entity.getAnswers()
                 .stream()
                 .map(answerMapper::toDto)
                 .collect(Collectors.toList()));
@@ -39,7 +38,7 @@ public class QuestionMapper implements Mapper<FtrcQuestion, QuestionDto> {
 
     @Override
     public FtrcQuestion toEntity(QuestionDto dto) {
-        List<FtrcAnswer> answers = dto.getAnswerList()
+        List<FtrcAnswer> answers = dto.getAnswers()
                 .stream()
                 .map(answerMapper::toEntity)
                 .collect(Collectors.toList());
@@ -48,7 +47,7 @@ public class QuestionMapper implements Mapper<FtrcQuestion, QuestionDto> {
         question.setName(dto.getName());
         question.setDescription(dto.getDescription());
         question.setImage(dto.getImage());
-        question.setAnswer(answers);
+        question.setAnswers(answers);
         return question;
     }
 
@@ -59,7 +58,7 @@ public class QuestionMapper implements Mapper<FtrcQuestion, QuestionDto> {
         questionDto.setName(entity.getName());
         questionDto.setDescription(entity.getDescription());
         questionDto.setImage(entity.getImage());
-        questionDto.setAnswerList(entity.getAnswer()
+        questionDto.setAnswers(entity.getAnswers()
                 .stream()
                 .map(answerMapper::toShortDto)
                 .collect(Collectors.toList()));
