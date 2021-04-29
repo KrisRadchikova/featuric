@@ -3,6 +3,7 @@ package by.tms.featuric.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.weaver.ast.Test;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -33,8 +34,10 @@ public class FtrcQuestion {
     @NotEmpty
     private String description;
 
-    @NotBlank
-    @NotEmpty
+    @ManyToOne(fetch = FetchType.LAZY)
+    private FtrcTest test;
+
     @OneToMany(fetch = FetchType.LAZY)
-    private List<FtrcAnswer> answer;
+    @JoinColumn(name = "question_id", referencedColumnName = "id")
+    private List<FtrcAnswer> answers;
 }

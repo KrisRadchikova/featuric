@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.math.BigInteger;
@@ -33,13 +34,12 @@ public class FtrcTest {
     @NotEmpty
     private String description;
 
-    @NotBlank
-    @NotEmpty
     @ManyToOne(fetch = FetchType.LAZY)
     private FtrcCategory category;
 
-    @NotBlank
-    @NotEmpty
+//    @Valid
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "test_id", referencedColumnName = "id")
     private List<FtrcQuestion> questions;
 }
+

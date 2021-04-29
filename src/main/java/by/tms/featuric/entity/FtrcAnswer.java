@@ -24,14 +24,8 @@ public class FtrcAnswer {
     @NotEmpty
     private String description;
 
-    @NotBlank
-    @NotEmpty
-    private String allAnswers;
-
-
     private boolean rightAnswer;
 
-//    @ManyToOne
-    @Transient
+    @ManyToOne
     private FtrcQuestion question;
 }
