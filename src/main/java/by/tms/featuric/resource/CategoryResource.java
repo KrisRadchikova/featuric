@@ -9,10 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/category")
-//TODO create getAllCategories and findByName
 public class CategoryResource {
     private final CategoryService categoryService;
     private final CategoryMapper categoryMapper;
@@ -23,9 +24,26 @@ public class CategoryResource {
         this.categoryMapper = categoryMapper;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/byId/{id}")
     public CategoryDto getCategory(@PathVariable BigInteger id){
         return categoryMapper.toDto(categoryService.findCategoryById(id));
+    }
+
+    @GetMapping("/byName/{name}")
+    public CategoryDto getByName(@PathVariable String name){
+        return categoryMapper.toDto(categoryService.findCategoryByName(name));
+    }
+
+    @GetMapping("/getAll")
+    public List<CategoryDto> getAllCategories(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return categoryService.getAllCategories().stream()
+                .map(categoryMapper::toShortDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/save")

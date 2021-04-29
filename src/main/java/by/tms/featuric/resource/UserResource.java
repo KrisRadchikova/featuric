@@ -9,10 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")
-//TODO create getAll, findByFirstNameAndLastName, findByLogin
 public class UserResource {
     private final UserService userService;
     private final UserMapper userMapper;
@@ -21,6 +22,16 @@ public class UserResource {
     public UserResource(UserService userService, UserMapper userMapper) {
         this.userService = userService;
         this.userMapper = userMapper;
+    }
+
+    @GetMapping("/byLogin/{login}")
+    public UserDto getByLogin(@PathVariable String login){
+        return userMapper.toDto(userService.findUserByLogin(login));
+    }
+
+    @GetMapping("/byNames/{first}/{last}")
+    public UserDto getByFirstNameAndLastName(@PathVariable String first, @PathVariable String last){
+        return userMapper.toDto(userService.findUserByFirstNameAndLastName(first, last));
     }
 
     @GetMapping("/{id}")
@@ -32,6 +43,13 @@ public class UserResource {
     public UserDto save(@RequestBody UserDto userDto){
         FtrcUser user = userMapper.toEntity(userDto);
         return userMapper.toDto(userService.save(user));
+    }
+
+    @GetMapping("/getAll")
+    public List<UserDto> getAll(){
+        return userService.getAllUsers().stream()
+                .map(userMapper::toShortDto)
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
