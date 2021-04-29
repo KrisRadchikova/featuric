@@ -14,6 +14,6 @@ public class QuestionDto {
     String name;
     String image;
     String description;
-    List<AnswerDto> answerList;
+    List<AnswerDto> answers;
 
 }

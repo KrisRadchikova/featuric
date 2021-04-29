@@ -12,7 +12,6 @@ public class AnswerDto {
 
     BigInteger id;
     String description;
-    String allAnswers;
     boolean rightAnswer;
     FtrcQuestion question;
 }
