@@ -8,4 +8,5 @@ import java.math.BigInteger;
 
 @Repository
 public interface FtrcQuestionRepository extends JpaRepository<FtrcQuestion, BigInteger> {
+    FtrcQuestion getFtrcQuestionByTestId(BigInteger id);
 }
