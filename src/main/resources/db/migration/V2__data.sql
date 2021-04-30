@@ -12,8 +12,8 @@ INSERT INTO ftrc_test(id, name, image, description, category_id)
 VALUES (5, 'Вселенная Гарри Поттера', '-', 'Знание вселенной Гарри Поттера', 3 )
 
 -- 1 вопрос
-INSERT INTO ftrc_question(id, name, image, description, test_id)
-VALUES (6, 'Сколько лучших друзей было у Гарри Поттера?', 'картинка', '---', 5)
+-- INSERT INTO ftrc_question(id, name, image, description, test_id)
+-- VALUES (6, 'Сколько лучших друзей было у Гарри Поттера?', 'картинка', '---', 5)
 
 
 -- INSERT INTO ftrc_answer(id, description, rightAnswer, question_id) VALUES (7, '1', false, 6)
