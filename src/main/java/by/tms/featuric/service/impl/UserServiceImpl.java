@@ -27,14 +27,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public FtrcUser save(FtrcUser ftrcUser) {
+        ftrcUser.setPassword(passwordEncoder.encode(ftrcUser.getPassword()));
         return ftrcUserRepository.save(ftrcUser);
     }
 
-    // public boolean addUser(FtrcUser user) {
-    //        user.setPassword(passwordEncoder.encode(user.getPassword()));
-    //        ftrcUserRepository.save(user);
-    //        return true;
-    //    }
     @Override
     public FtrcUser update(BigInteger id, FtrcUser ftrcUserRequest) {
         ftrcUserRepository.findById(id).map(ftrcUser -> {
