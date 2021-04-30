@@ -37,16 +37,14 @@ public class FtrcUser {
 
     @NotBlank
     @NotEmpty
-    @Size(min = 4, max = 10)
+    @Size(min = 4, max = 20)
     private String login;
 
     @NotBlank
     @NotEmpty
-    @Size(min = 5, max = 20)
+    @Size(min = 5, max = 999)
     private String password;
 
-    @NotBlank
-    @NotEmpty
     private FtrcUserStatus userStatus;
 
     @NotBlank
@@ -54,7 +52,5 @@ public class FtrcUser {
     @Email
     private String email;
 
-    @NotBlank
-    @NotEmpty
     private double rating;
 }
