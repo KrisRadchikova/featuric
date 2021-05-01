@@ -32,6 +32,7 @@ public class UserMapper implements Mapper<FtrcUser, UserDto> {
         user.setPassword(dto.getPassword());
         user.setEmail(dto.getEmail());
         user.setUserStatus(dto.getUserStatus());
+        user.setRating(dto.getRating());
         return user;
     }
 
