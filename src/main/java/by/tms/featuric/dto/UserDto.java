@@ -18,5 +18,6 @@ public class UserDto {
     String password;
     String email;
     FtrcUserStatus userStatus;
+    double rating;
 
 }
