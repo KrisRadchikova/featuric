@@ -30,7 +30,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public FtrcQuestion save(FtrcQuestion ftrcQuestion) {
         log.info("Method - save question");
-        if(ftrcQuestionRepository.findByName(ftrcQuestion.getName()) != null){
+        if (ftrcQuestionRepository.findByName(ftrcQuestion.getName()) != null) {
             throw new ExistsException("Question exists");
         }
         return ftrcQuestionRepository.save(ftrcQuestion);
@@ -52,7 +52,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void deleteQuestionById(BigInteger id) {
         log.info("Method - delete question by ID");
-        if(ftrcQuestionRepository.findById(id).isPresent()){
+        if (ftrcQuestionRepository.findById(id).isPresent()) {
             ftrcQuestionRepository.deleteById(id);
         }
         throw new NotFoundException("Question with id " + id + " not found");

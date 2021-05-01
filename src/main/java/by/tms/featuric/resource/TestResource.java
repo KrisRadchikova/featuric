@@ -8,7 +8,14 @@ import by.tms.featuric.service.mapper.TestMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -28,13 +35,13 @@ public class TestResource {
     }
 
     @GetMapping("/byCategory/{category}")
-    public TestDto getByCategory(@PathVariable FtrcCategory category){
+    public TestDto getByCategory(@PathVariable FtrcCategory category) {
         log.info("GET - get test by category, path: /test/byCategory/{category}?category= " + category);
         return testMapper.toDto(testService.findTestByCategory(category));
     }
 
     @GetMapping("/byName/{name}")
-    public TestDto getByName(@PathVariable String name){
+    public TestDto getByName(@PathVariable String name) {
         log.info("GET - get test by name, path:/test/byName/{name}?name= " + name);
         return testMapper.toDto(testService.findTestByName(name));
     }
@@ -46,7 +53,7 @@ public class TestResource {
     }
 
     @GetMapping("/getAll")
-    public List<TestDto> getAll(){
+    public List<TestDto> getAll() {
         log.info("GET - get all tests, path: /test/getAll");
         return testService.getAllTests().stream()
                 .map(testMapper::toShortDto)
@@ -54,21 +61,21 @@ public class TestResource {
     }
 
     @PostMapping("/save")
-    public TestDto save(@RequestBody TestDto testDto){
+    public TestDto save(@RequestBody TestDto testDto) {
         log.info("POST - save test, path: /test/save");
         FtrcTest test = testMapper.toEntity(testDto);
         return testMapper.toDto(testService.save(test));
     }
 
     @PutMapping("/{id}")
-    public TestDto update(@PathVariable BigInteger id, @RequestBody TestDto testDto){
+    public TestDto update(@PathVariable BigInteger id, @RequestBody TestDto testDto) {
         log.info("PUT - update test, path: /test/{id}?id= " + id);
         FtrcTest test = testMapper.toEntity(testDto);
         return testMapper.toDto(testService.update(id, test));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable BigInteger id){
+    public ResponseEntity<?> delete(@PathVariable BigInteger id) {
         log.info("DELETE - delete test, path: /test/{id}?id= " + id);
         testService.deleteTestById(id);
         return ResponseEntity.ok().build();

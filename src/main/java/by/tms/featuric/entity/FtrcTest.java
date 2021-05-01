@@ -37,7 +37,7 @@ public class FtrcTest {
     @ManyToOne(fetch = FetchType.LAZY)
     private FtrcCategory category;
 
-//    @Valid
+    //    @Valid
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "test_id", referencedColumnName = "id")
     private List<FtrcQuestion> questions;

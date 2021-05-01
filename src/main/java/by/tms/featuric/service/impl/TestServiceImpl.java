@@ -28,7 +28,7 @@ public class TestServiceImpl implements TestService {
     @Override
     public FtrcTest save(FtrcTest ftrcTest) {
         log.info("Method - save test");
-        if(ftrcTestRepository.findFtrcTestByName(ftrcTest.getName()) != null){
+        if (ftrcTestRepository.findFtrcTestByName(ftrcTest.getName()) != null) {
             throw new ExistsException("Test exists");
         }
         return ftrcTestRepository.save(ftrcTest);
@@ -51,7 +51,7 @@ public class TestServiceImpl implements TestService {
     @Override
     public void deleteTestById(BigInteger id) {
         log.info("Method - delete test by ID");
-        if(ftrcTestRepository.findById(id).isPresent()) {
+        if (ftrcTestRepository.findById(id).isPresent()) {
             ftrcTestRepository.deleteById(id);
         }
         throw new NotFoundException("Test with id " + id + " not found");
@@ -72,7 +72,7 @@ public class TestServiceImpl implements TestService {
     @Override
     public FtrcTest findTestByCategory(FtrcCategory ftrcCategory) {
         log.info("Method - find test by category");
-        if(ftrcTestRepository.findById(ftrcCategory.getId()).isPresent()) {
+        if (ftrcTestRepository.findById(ftrcCategory.getId()).isPresent()) {
             return ftrcTestRepository.findFtrcTestByCategory(ftrcCategory);
         }
         throw new NotFoundException("There is no test in this category");

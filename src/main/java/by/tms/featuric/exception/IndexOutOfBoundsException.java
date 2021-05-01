@@ -1,11 +1,11 @@
 package by.tms.featuric.exception;
 
 public class IndexOutOfBoundsException extends RuntimeException {
-    public IndexOutOfBoundsException(){
+    public IndexOutOfBoundsException() {
         super();
     }
 
-    public IndexOutOfBoundsException(String message){
+    public IndexOutOfBoundsException(String message) {
         super(message);
     }
 }

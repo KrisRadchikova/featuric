@@ -27,7 +27,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public FtrcAnswer save(FtrcAnswer ftrcAnswer) {
         log.info("Method - save answer");
-        if(ftrcAnswerRepository.findByDescription(ftrcAnswer.getDescription()) != null){
+        if (ftrcAnswerRepository.findByDescription(ftrcAnswer.getDescription()) != null) {
             throw new ExistsException("Answer exists");
         }
         return ftrcAnswerRepository.save(ftrcAnswer);
