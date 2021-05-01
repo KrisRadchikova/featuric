@@ -41,5 +41,13 @@ public class FtrcTest {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "test_id", referencedColumnName = "id")
     private List<FtrcQuestion> questions;
+
+    public FtrcTest(@NotBlank @NotEmpty String name, @NotBlank @NotEmpty String image, @NotBlank @NotEmpty String description, FtrcCategory category, List<FtrcQuestion> questions) {
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.category = category;
+        this.questions = questions;
+    }
 }
 

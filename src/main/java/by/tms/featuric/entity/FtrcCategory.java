@@ -27,4 +27,9 @@ public class FtrcCategory {
     @NotBlank
     @NotEmpty
     private String description;
+
+    public FtrcCategory(@NotBlank @NotEmpty String name, @NotBlank @NotEmpty String description) {
+        this.name = name;
+        this.description = description;
+    }
 }

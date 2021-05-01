@@ -28,4 +28,10 @@ public class FtrcAnswer {
 
     @ManyToOne
     private FtrcQuestion question;
+
+    public FtrcAnswer(@NotBlank @NotEmpty String description, boolean rightAnswer, FtrcQuestion question) {
+        this.description = description;
+        this.rightAnswer = rightAnswer;
+        this.question = question;
+    }
 }

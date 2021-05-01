@@ -53,4 +53,15 @@ public class FtrcUser {
     private String email;
 
     private double rating;
+
+    public FtrcUser(@NotBlank @NotEmpty String firstName, @NotBlank @NotEmpty String lastName, @NotBlank @NotEmpty String image, @NotBlank @NotEmpty @Size(min = 4, max = 20) String login, @NotBlank @NotEmpty @Size(min = 5, max = 999) String password, FtrcUserStatus userStatus, @NotBlank @NotEmpty @Email String email, double rating) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.image = image;
+        this.login = login;
+        this.password = password;
+        this.userStatus = userStatus;
+        this.email = email;
+        this.rating = rating;
+    }
 }
