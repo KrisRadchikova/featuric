@@ -54,8 +54,9 @@ public class QuestionServiceImpl implements QuestionService {
         log.info("Method - delete question by ID");
         if (ftrcQuestionRepository.findById(id).isPresent()) {
             ftrcQuestionRepository.deleteById(id);
+        } else {
+            throw new NotFoundException("Question with id " + id + " not found");
         }
-        throw new NotFoundException("Question with id " + id + " not found");
     }
 
     @Override

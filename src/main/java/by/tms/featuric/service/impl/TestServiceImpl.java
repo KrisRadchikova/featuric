@@ -53,8 +53,9 @@ public class TestServiceImpl implements TestService {
         log.info("Method - delete test by ID");
         if (ftrcTestRepository.findById(id).isPresent()) {
             ftrcTestRepository.deleteById(id);
+        } else {
+            throw new NotFoundException("Test with id " + id + " not found");
         }
-        throw new NotFoundException("Test with id " + id + " not found");
     }
 
     @Override

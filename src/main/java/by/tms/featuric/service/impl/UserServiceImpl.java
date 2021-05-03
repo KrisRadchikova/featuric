@@ -61,8 +61,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         log.info("Method - delete user by ID");
         if (ftrcUserRepository.findById(id).isPresent()) {
             ftrcUserRepository.deleteById(id);
+        } else {
+            throw new NotFoundException("User with id " + id + " not found");
         }
-        throw new NotFoundException("User with id " + id + " not found");
     }
 
     @Override

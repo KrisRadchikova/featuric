@@ -49,8 +49,9 @@ public class CategoryServiceImpl implements CategoryService {
         log.info("Method - delete category by ID");
         if (ftrcCategoryRepository.findById(id).isPresent()) {
             ftrcCategoryRepository.deleteById(id);
+        } else {
+            throw new NotFoundException("Category with id " + id + " not found");
         }
-        throw new NotFoundException("Category with id " + id + " not found");
     }
 
     @Override
