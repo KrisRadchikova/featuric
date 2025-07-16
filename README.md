@@ -19,8 +19,3 @@ Featuric — это веб-приложение, разработанное с �
 - **Flyway**: миграции базы данных.
 - **JUnit**: тестирование.
 - **PostgreSQL** и **H2**: базы данных.
-
-## Установка и запуск проекта
-1. Клонируйте репозиторий:
-   ```bash
-   git clone https://github.com/KrisRadchikova/featuric.git
