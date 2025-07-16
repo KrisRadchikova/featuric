@@ -1,0 +1,69 @@
+package by.petProject.featuric.service.mapper;
+
+import by.petProject.featuric.service.interfaces.CategoryService;
+import by.petProject.featuric.service.interfaces.Mapper;
+import by.petProject.featuric.dto.TestDto;
+import by.petProject.featuric.entity.FtrcCategory;
+import by.petProject.featuric.entity.FtrcTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
+
+@Component
+public class TestMapper implements Mapper<FtrcTest, TestDto> {
+
+    private final QuestionMapper questionMapper;
+    private final CategoryService categoryService;
+
+    @Autowired
+    public TestMapper(QuestionMapper questionMapper, CategoryService categoryService) {
+        this.questionMapper = questionMapper;
+        this.categoryService = categoryService;
+    }
+
+    @Override
+    public TestDto toDto(FtrcTest entity) {
+        TestDto testDto = new TestDto();
+        testDto.setId(entity.getId());
+        testDto.setName(entity.getName());
+        testDto.setImage(entity.getImage());
+        testDto.setDescription(entity.getDescription());
+        testDto.setCategory(entity.getCategory().toString());
+        testDto.setQuestions(entity.getQuestions()
+                .stream()
+                .map(questionMapper::toDto)
+                .collect(Collectors.toList()));
+        return testDto;
+    }
+
+    @Override
+    public FtrcTest toEntity(TestDto dto) {
+        FtrcCategory category = null;
+        if (dto.getCategory() != null) {
+            category = categoryService.findCategoryById(dto.getId());
+        }
+        FtrcTest test = new FtrcTest();
+        test.setId(dto.getId());
+        test.setName(dto.getName());
+        test.setImage(dto.getImage());
+        test.setDescription(dto.getDescription());
+        test.setCategory(category);
+        test.setQuestions(dto.getQuestions()
+                .stream()
+                .map(questionMapper::toEntity)
+                .collect(Collectors.toList()));
+        return test;
+    }
+
+    @Override
+    public TestDto toShortDto(FtrcTest entity) {
+        TestDto testDto = new TestDto();
+        testDto.setId(entity.getId());
+        testDto.setName(entity.getName());
+        testDto.setImage(entity.getImage());
+        testDto.setDescription(entity.getDescription());
+        testDto.setCategory(entity.getCategory().toString());
+        return testDto;
+    }
+}

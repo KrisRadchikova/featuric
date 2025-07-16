@@ -1,0 +1,23 @@
+package by.petProject.featuric.service.interfaces;
+
+import by.petProject.featuric.entity.FtrcUser;
+
+import java.math.BigInteger;
+import java.util.List;
+
+public interface UserService {
+
+    FtrcUser save(FtrcUser ftrcUser);
+
+    FtrcUser update(BigInteger id, FtrcUser ftrcUser);
+
+    void deleteById(BigInteger id);
+
+    List<FtrcUser> getAllUsers();
+
+    FtrcUser findUserById(BigInteger id);
+
+    FtrcUser findUserByFirstNameAndLastName(String firstName, String lastName);
+
+    FtrcUser findUserByLogin(String login);
+}

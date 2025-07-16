@@ -1,0 +1,67 @@
+package by.petProject.featuric.service.mapper;
+
+import by.petProject.featuric.service.interfaces.CategoryService;
+import by.petProject.featuric.service.interfaces.Mapper;
+import by.petProject.featuric.dto.QuestionDto;
+import by.petProject.featuric.entity.FtrcAnswer;
+import by.petProject.featuric.entity.FtrcQuestion;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Component
+public class QuestionMapper implements Mapper<FtrcQuestion, QuestionDto> {
+
+    private final AnswerMapper answerMapper;
+    private final CategoryService categoryService;
+
+    @Autowired
+    public QuestionMapper(AnswerMapper answerMapper, CategoryService categoryService) {
+        this.answerMapper = answerMapper;
+        this.categoryService = categoryService;
+    }
+
+    @Override
+    public QuestionDto toDto(FtrcQuestion entity) {
+        QuestionDto questionDto = new QuestionDto();
+        questionDto.setId(entity.getId());
+        questionDto.setName(entity.getName());
+        questionDto.setAnswers(entity.getAnswers()
+                .stream()
+                .map(answerMapper::toDto)
+                .collect(Collectors.toList()));
+
+        return questionDto;
+    }
+
+    @Override
+    public FtrcQuestion toEntity(QuestionDto dto) {
+        List<FtrcAnswer> answers = dto.getAnswers()
+                .stream()
+                .map(answerMapper::toEntity)
+                .collect(Collectors.toList());
+        FtrcQuestion question = new FtrcQuestion();
+        question.setId(dto.getId());
+        question.setName(dto.getName());
+        question.setDescription(dto.getDescription());
+        question.setImage(dto.getImage());
+        question.setAnswers(answers);
+        return question;
+    }
+
+    @Override
+    public QuestionDto toShortDto(FtrcQuestion entity) {
+        QuestionDto questionDto = new QuestionDto();
+        questionDto.setId(entity.getId());
+        questionDto.setName(entity.getName());
+        questionDto.setDescription(entity.getDescription());
+        questionDto.setImage(entity.getImage());
+        questionDto.setAnswers(entity.getAnswers()
+                .stream()
+                .map(answerMapper::toShortDto)
+                .collect(Collectors.toList()));
+        return questionDto;
+    }
+}
